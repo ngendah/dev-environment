@@ -31,17 +31,8 @@ set matchtime=3
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
 
-"PLUGIN CONFIGURATIONS
-execute pathogen#infect()
-
-let g:seoul256_background = 233
-colo seoul256
-
 " lightline
 set noshowmode
-let g:lightline = {
-      \ 'colorscheme': 'seoul256',
-      \ }
 
 " indentLine
 let g:indentLine_setColors = 0
@@ -64,12 +55,21 @@ let g:syntastic_check_on_open=0
 let g:syntastic_check_on_wq=0
 
 " netrw
-"let g:netrw_banner=0
 let g:netrw_liststyle=3
-"let g:netrw_browse_split=4
-"let g:netrw_altv=1
-"let g:netrw_winsize=22
-"augroup ProjectDrawer
-"  autocmd!
-"  autocmd VimEnter * :Vexplore
-"augroup END
+
+"
+" plugins
+"
+call plug#begin('~/.vim/plugged')
+Plug 'tpope/vim-sensible'
+Plug 'yuezk/vim-js'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'https://github.com/vim-syntastic/syntastic.git'
+Plug 'elixir-editors/vim-elixir'
+Plug 'itchyny/lightline.vim'
+Plug 'othree/html5.vim'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'posva/vim-vue'
+call plug#end()

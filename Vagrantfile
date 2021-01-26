@@ -28,8 +28,6 @@ Vagrant.configure('2') do |config|
   # config.vm.network 'forwarded_port', guest: 80, host: 8080, host_ip: '127.0.0.1'
   # config.vm.network 'public_network'
 
-  config.vm.network 'private_network', ip: '192.168.33.10'
-  config.vm.synced_folder '.', '/vagrant', disabled: true
   config.vm.provision 'file', source: './.vimrc', destination: '/home/vagrant/.vimrc'
 
   config.vm.provider :libvirt do |vp, override|
@@ -57,17 +55,6 @@ Vagrant.configure('2') do |config|
     echo 'export WORKON_HOME=$HOME/.virtualenvs' >> $HOME/.bashrc
     echo 'source $HOME/.local/bin/virtualenvwrapper.sh' >> $HOME/.bashrc
     source $HOME/.bashrc
-    mkdir -p $HOME/.vim/autoload $HOME/.vim/bundle
-    curl -LSso $HOME/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
-    git clone https://github.com/srcery-colors/srcery-vim $HOME/.vim/bundle/srcery-vim
-    git clone https://tpope.io/vim/sensible.git $HOME/.vim/bundle/sensible
-    git clone --depth=1 https://github.com/vim-syntastic/syntastic.git $HOME/.vim/bundle/syntastic
-    git clone https://github.com/itchyny/lightline.vim ~/.vim/bundle/lightline.vim
-    git clone https://github.com/kien/ctrlp.vim.git $HOME/.vim/bundle/ctrlp.vim
-    git clone https://github.com/othree/html5.vim $HOME/.vim/bundle/html5.vim
-    git clone https://github.com/pangloss/vim-javascript.git $HOME/.vim/bundle/vim-javascript
-    git clone https://github.com/fatih/vim-go.git $HOME/.vim/bundle/vim-go
-    git clone https://github.com/elixir-lang/vim-elixir.git $HOME/.vim/bundle/vim-elixir
-    git clone https://github.com/junegunn/seoul256.vim.git $HOME/.vim/bundle/seoul256.vim
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   SHELL
 end
